@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void sequential(int num[50]){
+
+    int size,startblock;
+    int j=0,count=0;
+    printf("Enter size of file: \n");
+    scanf("%d",&size);
+
+    printf("Enter starting block of file: \n");
+    scanf("%d",&startblock);
+
+    if(num[startblock] == 0){
+        int k = startblock;
+        while(j<size){
+
+            if(num[k] == 0){
+                num[k] = 1;
+                printf("Allocated in %d\n",k);
+                
+                j++;
+            }else{
+                printf("Some other file in %d\n",k);
+            }
+            k++; 
+        }
+    }else{
+        printf("Some other file exists in %d\n",startblock);
+    }
+    
+    printf("Do you want to add more?\n");
+    char ch;
+    getchar();
+    scanf("%c",&ch);
+    if(ch == 'y' || ch == 'Y'){
+        sequential(num);
+    }else{
+        exit(0);
+    }
+    
+}
+
+void main(){
+    int arr[50];
+    for(int i=0;i<50;i++){
+        arr[i] = 0;
+    }
+    sequential(arr);
+
+    
+}
